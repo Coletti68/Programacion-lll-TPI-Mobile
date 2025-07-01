@@ -1,4 +1,4 @@
-package data.model
+package com.example.alquilervehiculos.data.model
 
 data class LoginRequest(
     val email: String,
