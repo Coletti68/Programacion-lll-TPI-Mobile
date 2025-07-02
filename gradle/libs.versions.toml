@@ -1,5 +1,6 @@
 [versions]
 agp = "8.1.0"
+cardview = "1.0.0"
 kotlin = "2.0.21"
 coreKtx = "1.12.0"
 appcompat = "1.6.1"
@@ -14,9 +15,11 @@ junitExt = "1.1.5"
 espressoCore = "3.6.1"
 retrofit = "2.9.0"
 loggingInterceptor = "4.12.0"
+activity = "1.10.1"
 
 [libraries]
 # Core
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -52,6 +55,7 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 # Compose Test
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

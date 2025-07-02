@@ -1,6 +1,5 @@
-package com.example.alquilervehiculos.ui.auth.login
+package com.example.alquilervehiculos.ui.auth.ui.login
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels

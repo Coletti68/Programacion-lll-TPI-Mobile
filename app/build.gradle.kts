@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.constraintlayout)
 
+
     // Lifecycle + Coroutines
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
@@ -71,6 +72,7 @@ dependencies {
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.activity)
 
     // Tests
     testImplementation(libs.junit)

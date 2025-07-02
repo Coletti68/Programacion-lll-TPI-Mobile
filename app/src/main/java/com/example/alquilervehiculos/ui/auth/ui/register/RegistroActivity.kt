@@ -1,12 +1,8 @@
-package com.example.alquilervehiculos.ui.auth.register
+package com.example.alquilervehiculos.ui.auth.ui.register
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.alquilervehiculos.R
 import com.example.alquilervehiculos.databinding.ActivityRegistroBinding
 import androidx.activity.viewModels
 import com.example.alquilervehiculos.viewmodel.AuthViewModel
