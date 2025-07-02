@@ -13,17 +13,17 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
-    @POST("api/Auth/login")
+    @POST("Auth/login")
     suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
 
     @POST("api/Auth/registro")
     suspend fun register(@Body request: RegistroRequest): Response<Void>
 
 
-    @GET("api/Vehiculos")
-    suspend fun getVehiculos(): List<Vehiculo>
+    /*@GET("api/Vehiculos")
+   // suspend fun getVehiculos(): List<Vehiculo>
 
-    @GET("api/Vehiculos/{id}")
+    //@GET("api/Vehiculos/{id}")
     suspend fun getVehiculoById(@Path("id") id: Int): Vehiculo
 
     @POST("api/Vehiculos")
@@ -34,5 +34,7 @@ interface ApiService {
 
     @DELETE("api/Vehiculos/{id}")
     suspend fun deleteVehiculo(@Path("id") id: Int)
+    */
+
 
 }

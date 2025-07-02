@@ -13,31 +13,48 @@ import kotlinx.coroutines.launch
 class AuthViewModel : ViewModel() {
 
     val loginResult = MutableLiveData<LoginResponse?>()
-    val registroSuccess = MutableLiveData<Boolean>() // ✅ NUEVO
+    val registroSuccess = MutableLiveData<Boolean>()
 
     fun login(email: String, password: String) {
+        val request = LoginRequest(email.trim(), password)
+
         viewModelScope.launch {
             try {
-                val response = RestClient.api.login(LoginRequest(email, password))
+                val response = RestClient.api.login(request)
+
                 if (response.isSuccessful) {
                     loginResult.postValue(response.body())
                 } else {
                     loginResult.postValue(null)
+                    // Para depurar errores HTTP específicos
+                    println("Error: Código ${response.code()} - ${response.message()}")
                 }
             } catch (e: Exception) {
                 loginResult.postValue(null)
+                println("Excepción: ${e.message}")
             }
         }
     }
 
-
     fun register(nombreCompleto: String, email: String, password: String, dni: String) {
         val request = RegistroRequest(
-            nombreCompleto = nombreCompleto,
-            email = email,
+            nombreCompleto = nombreCompleto.trim(),
+            email = email.trim(),
             password = password,
-            dni = dni
+            dni = dni.trim()
         )
 
+        viewModelScope.launch {
+            try {
+                val response = RestClient.api.register(request)
+                registroSuccess.postValue(response.isSuccessful)
+                if (!response.isSuccessful) {
+                    println("Registro fallido: ${response.code()} - ${response.message()}")
+                }
+            } catch (e: Exception) {
+                registroSuccess.postValue(false)
+                println("Excepción en registro: ${e.message}")
+            }
+        }
     }
 }

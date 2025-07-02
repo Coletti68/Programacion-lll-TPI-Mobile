@@ -17,18 +17,6 @@
         android:theme="@style/Theme.AlquilerVehiculos"
         tools:targetApi="31">
         <activity
-            android:name=".ui.Vehiculos.list.Vehiculo_ListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.Vehiculos.edit.vehiculo_editActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.Vehiculos.detail.vehiculo_detailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.Vehiculos.list.VehiculoListActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.auth.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>

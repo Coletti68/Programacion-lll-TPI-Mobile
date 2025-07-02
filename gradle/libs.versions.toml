@@ -1,13 +1,13 @@
 [versions]
-agp = "8.1.0"
+agp = "8.4.1"                         # Android Gradle Plugin compatible con compileSdk 35
+kotlin = "2.0.21"                     # Mantenemos esta, está perfecta
 cardview = "1.0.0"
-kotlin = "2.0.21"
 coreKtx = "1.12.0"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 material = "1.11.0"
 composeBom = "2024.09.00"
-activityCompose = "1.8.2"
+activityCompose = "1.10.1"           # Acorde al compileSdk 35
 lifecycle = "2.6.2"
 coroutines = "1.7.3"
 junit = "4.13.2"
@@ -16,6 +16,8 @@ espressoCore = "3.6.1"
 retrofit = "2.9.0"
 loggingInterceptor = "4.12.0"
 activity = "1.10.1"
+
+
 
 [libraries]
 # Core
@@ -61,4 +63,5 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 
