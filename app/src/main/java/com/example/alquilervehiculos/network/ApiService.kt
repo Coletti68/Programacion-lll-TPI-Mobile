@@ -22,6 +22,9 @@ interface ApiService {
     @GET("Vehiculos")
     suspend fun obtenerVehiculos(): Response<List<Vehiculo>>
 
+    @POST("Alquiler")
+    suspend fun crearAlquiler(@Body alquiler: AlquilerRequest): Response<Void>
+
     /*//@GET("api/Vehiculos/{id}")
     suspend fun getVehiculoById(@Path("id") id: Int): Vehiculo
 

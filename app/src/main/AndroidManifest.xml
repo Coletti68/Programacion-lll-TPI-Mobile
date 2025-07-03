@@ -16,19 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlquilerVehiculos"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ui.auth.ui.alquiler.AlquilerActivity"
+            android:exported="false" />
         <activity android:name=".ui.auth.ui.register.RegistroActivity" />
         <activity
             android:name=".ui.auth.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.auth.ui.home.HomeActivity"
             android:exported="true" />
     </application>
+
 </manifest>

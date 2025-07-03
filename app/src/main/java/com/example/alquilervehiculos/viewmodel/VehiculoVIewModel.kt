@@ -1,8 +1,10 @@
 package com.example.alquilervehiculos.viewmodel
+
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.alquilervehiculos.data.model.AlquilerRequest
 import com.example.alquilervehiculos.data.model.Vehiculo
 import com.example.alquilervehiculos.network.RestClient
 import kotlinx.coroutines.launch
@@ -34,4 +36,20 @@ class VehiculoViewModel : ViewModel() {
             }
         }
     }
+
+    fun crearAlquiler(request: AlquilerRequest, onResult: (Boolean, String?) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val response = RestClient.api.crearAlquiler(request)
+                if (response.isSuccessful) {
+                    onResult(true, null)
+                } else {
+                    onResult(false, "Error al crear alquiler: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                onResult(false, "Excepción: ${e.localizedMessage}")
+            }
+        }
+    }
 }
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 🧾 Vehículo seleccionado -->
+        <TextView
+            android:id="@+id/tvVehiculoInfo"
+            android:text="Vehículo: Nissan Versa (ABC-123)"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 📅 Fecha inicio -->
+        <EditText
+            android:id="@+id/etFechaInicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de inicio (YYYY-MM-DD)"
+            android:inputType="date" />
+
+        <!-- 📅 Fecha fin -->
+        <EditText
+            android:id="@+id/etFechaFin"
+            android:hint="Fecha de fin (YYYY-MM-DD)"
+            android:inputType="date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- 📄 Términos -->
+        <TextView
+            android:id="@+id/tvTerminosTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:text="Al confirmar el alquiler usted acepta que es responsable por el uso del vehículo, deberá devolverlo limpio y con combustible. La empresa no se hace responsable por objetos olvidados."
+            android:textSize="14sp" />
+
+        <!-- ✅ Acepto términos -->
+        <CheckBox
+            android:id="@+id/cbTerminos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acepto los términos y condiciones" />
+
+        <!-- 🔘 Botón confirmar -->
+        <Button
+            android:id="@+id/btnConfirmarAlquiler"
+            android:text="Confirmar alquiler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <!-- 📤 Resultado -->
+        <TextView
+            android:id="@+id/tvResultadoAlquiler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Resultado..."
+            android:textColor="#333333"
+            android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>
+
