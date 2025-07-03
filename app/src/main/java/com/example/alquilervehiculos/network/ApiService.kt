@@ -19,21 +19,7 @@ interface ApiService {
     @POST("Usuario")
     suspend fun registrarUsuario(@Body registro: RegistroRequest): Response<Unit>
 
-    /*@GET("api/Vehiculos")
-   // suspend fun getVehiculos(): List<Vehiculo>
-
-    //@GET("api/Vehiculos/{id}")
-    suspend fun getVehiculoById(@Path("id") id: Int): Vehiculo
-
-    @POST("api/Vehiculos")
-    suspend fun addVehiculo(@Body vehiculo: Vehiculo): Vehiculo
-
-    @PUT("api/Vehiculos/{id}")
-    suspend fun updateVehiculo(@Path("id") id: Int, @Body vehiculo: Vehiculo): Vehiculo
-
-    @DELETE("api/Vehiculos/{id}")
-    suspend fun deleteVehiculo(@Path("id") id: Int)
-    */
-
+    @GET("api/vehiculos")
+    suspend fun obtenerVehiculos(): Response<List<Vehiculo>>
 
 }
