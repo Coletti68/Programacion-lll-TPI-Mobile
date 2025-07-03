@@ -20,6 +20,25 @@ class AuthViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
+                val request = LoginRequest(email.trim(), password)
+                println("📤 Enviando login: ${request.email} / ${request.password}")
+
+                viewModelScope.launch {
+                    try {
+                        val response = RestClient.api.login(request)
+                        println("📥 Respuesta: código ${response.code()} - body=${response.body()} - error=${response.errorBody()?.string()}")
+
+                        if (response.isSuccessful) {
+                            loginResult.postValue(response.body())
+                        } else {
+                            loginResult.postValue(null)
+                        }
+                    } catch (e: Exception) {
+                        println("💥 Excepción login: ${e.message}")
+                        loginResult.postValue(null)
+                    }
+                }
+
                 val response = RestClient.api.login(request)
 
                 if (response.isSuccessful) {
