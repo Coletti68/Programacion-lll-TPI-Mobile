@@ -19,10 +19,10 @@ interface ApiService {
     @POST("Usuario")
     suspend fun registrarUsuario(@Body registro: RegistroRequest): Response<Unit>
 
-    @GET("Vehiculos")
-    suspend fun obtenerVehiculos(): Response<List<Vehiculo>>
+    /*@GET("api/Vehiculos")
+   // suspend fun getVehiculos(): List<Vehiculo>
 
-    /*//@GET("api/Vehiculos/{id}")
+    //@GET("api/Vehiculos/{id}")
     suspend fun getVehiculoById(@Path("id") id: Int): Vehiculo
 
     @POST("api/Vehiculos")
