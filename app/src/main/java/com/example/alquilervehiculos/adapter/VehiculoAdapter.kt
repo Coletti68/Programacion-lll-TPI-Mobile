@@ -51,7 +51,6 @@ class VehiculoAdapter(
         val index = position % imagenes.size
         imgView.setImageResource(imagenes[index])
 
-
         // 🔄 Color de fondo si está seleccionado
         holder.contenedor.setBackgroundResource(
             if (position == selectedPosition) R.drawable.bg_item_selected

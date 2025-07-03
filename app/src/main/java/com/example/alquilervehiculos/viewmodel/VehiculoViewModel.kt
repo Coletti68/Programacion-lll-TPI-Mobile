@@ -1,5 +1,5 @@
 package com.example.alquilervehiculos.viewmodel
-
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +21,9 @@ class VehiculoViewModel : ViewModel() {
             try {
                 val response = RestClient.api.obtenerVehiculos()
                 if (response.isSuccessful) {
-                    vehiculos.postValue(response.body())
+                    val lista = response.body() ?: emptyList()
+                    Log.d("VehiculoViewModel", "Vehículos recibidos: ${lista.size}")
+                    vehiculos.postValue(lista)
                 } else {
                     error.postValue("Error al cargar vehículos: ${response.code()}")
                 }
