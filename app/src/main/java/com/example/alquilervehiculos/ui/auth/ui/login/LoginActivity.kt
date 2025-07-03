@@ -8,6 +8,7 @@ import com.example.alquilervehiculos.databinding.ActivityLogin2Binding
 import com.example.alquilervehiculos.viewmodel.AuthViewModel
 import android.content.Intent
 import com.example.alquilervehiculos.ui.auth.ui.home.HomeActivity
+import com.example.alquilervehiculos.ui.auth.ui.register.RegistroActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLogin2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-       binding.btnLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
             viewModel.login(email, password)
@@ -31,8 +32,12 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
-            println("➡️ Login presionado: email=$email / pass=$password")
+            println(" Login presionado: email=$email / pass=$password")
             viewModel.login(email, password)
+        }
+        binding.tvRegistrarse.setOnClickListener {
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
         }
 
         viewModel.loginResult.observe(this) { result ->

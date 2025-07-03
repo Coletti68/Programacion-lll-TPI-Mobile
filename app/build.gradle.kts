@@ -44,6 +44,19 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeBom.get()
     }
+    packaging {
+        resources {
+            excludes += listOf(
+                "META-INF/LICENSE",
+                "META-INF/NOTICE",
+                "META-INF/INDEX.LIST",
+                "META-INF/DEPENDENCIES",
+                "META-INF/io.netty.versions.properties"
+            )
+        }
+
+
+    }
 }
 
 dependencies {
@@ -73,6 +86,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.androidx.activity)
+    implementation(libs.firebase.appdistribution.gradle)
 
     // Tests
     testImplementation(libs.junit)

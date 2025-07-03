@@ -29,4 +29,12 @@ android:layout_height="match_parent">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="24dp"/>
+    <TextView
+    android:id="@+id/tvRegistrarse"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="¿No tenés cuenta? Registrate acá"
+    android:textColor="@color/colorPrimary"
+    android:layout_marginTop="12dp"
+    android:textSize="16sp"/>
 </LinearLayout>
