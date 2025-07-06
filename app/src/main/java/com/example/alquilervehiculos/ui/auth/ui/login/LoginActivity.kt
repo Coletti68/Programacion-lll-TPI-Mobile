@@ -10,7 +10,6 @@ import android.content.Intent
 import com.example.alquilervehiculos.ui.auth.ui.home.HomeActivity
 import com.example.alquilervehiculos.ui.auth.ui.register.RegistroActivity
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogin2Binding
@@ -22,14 +21,14 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLogin2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
 
-            println(" Login presionado: email=$email / pass=$password")
+            println("Login presionado: email=$email / pass=$password")
             viewModel.login(email, password)
         }
+
         binding.tvRegistrarse.setOnClickListener {
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
@@ -37,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginResult.observe(this) { result ->
             if (result != null) {
-                saveToken(result.token)
+                saveTokenYUsuario(result.token, result.usuarioId)
                 Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
@@ -47,8 +46,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveToken(token: String) {
+    private fun saveTokenYUsuario(token: String, usuarioId: Int) {
         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
-        prefs.edit().putString("token", token).apply()
+        prefs.edit()
+            .putString("token", token)
+            .putInt("usuarioId", usuarioId)
+            .apply()
     }
 }

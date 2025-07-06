@@ -3,6 +3,8 @@ package com.example.alquilervehiculos.network
 import com.example.alquilervehiculos.data.model.LoginRequest
 import com.example.alquilervehiculos.data.model.LoginResponse
 import com.example.alquilervehiculos.data.model.RegistroRequest
+import com.example.alquilervehiculos.data.model.AlquilerRequest
+import com.example.alquilervehiculos.data.model.AlquilerResponse
 import com.example.alquilervehiculos.data.model.Vehiculo
 import retrofit2.Response
 import retrofit2.http.Body
@@ -23,7 +25,10 @@ interface ApiService {
     suspend fun obtenerVehiculos(): Response<List<Vehiculo>>
 
     @POST("Alquiler")
-    suspend fun crearAlquiler(@Body alquiler: AlquilerRequest): Response<Void>
+    suspend fun crearAlquiler(@Body alquiler: AlquilerRequest): AlquilerResponse
+
+    @GET("alquiler/usuario/{id}/resumen")
+    suspend fun obtenerResumenPorUsuario(@Path("id") usuarioId: Int): List<AlquilerResponse>
 
     /*//@GET("api/Vehiculos/{id}")
     suspend fun getVehiculoById(@Path("id") id: Int): Vehiculo

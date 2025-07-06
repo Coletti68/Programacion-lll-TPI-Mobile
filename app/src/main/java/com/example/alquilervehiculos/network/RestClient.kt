@@ -24,6 +24,9 @@ object RestClient {
     }
 
     private val okHttpClient: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(15, java.util.concurrent.TimeUnit.SECONDS) // ⏱ conecta al server
+        .readTimeout(15, java.util.concurrent.TimeUnit.SECONDS)    // ⏱ espera la respuesta
+        .writeTimeout(15, java.util.concurrent.TimeUnit.SECONDS)   // ⏱ opcional, por si subís archivos
         .sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
         .hostnameVerifier { _, _ -> true }
         .build()

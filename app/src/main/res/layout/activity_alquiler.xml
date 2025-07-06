@@ -48,14 +48,14 @@
 
         <!-- ✅ Acepto términos -->
         <CheckBox
-            android:id="@+id/cbTerminos"
+            android:id="@+id/chkTerminos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Acepto los términos y condiciones" />
 
         <!-- 🔘 Botón confirmar -->
         <Button
-            android:id="@+id/btnConfirmarAlquiler"
+            android:id="@+id/btnConfirmar"
             android:text="Confirmar alquiler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,11 +63,11 @@
 
         <!-- 📤 Resultado -->
         <TextView
-            android:id="@+id/tvResultadoAlquiler"
+            android:id="@+id/tvResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Resultado..."
+            android:text=""
             android:textColor="#333333"
             android:textSize="16sp" />
     </LinearLayout>

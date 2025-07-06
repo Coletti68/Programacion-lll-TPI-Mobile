@@ -1,5 +1,3 @@
-
-
 package com.example.alquilervehiculos.ui.auth.ui.home
 
 import android.content.Intent
@@ -12,19 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.alquilervehiculos.R
 import com.example.alquilervehiculos.adapter.VehiculoAdapter
-import com.example.alquilervehiculos.data.model.AlquilerRequest
-import com.example.alquilervehiculos.data.model.Vehiculo
 import com.example.alquilervehiculos.ui.auth.ui.login.LoginActivity
+import com.example.alquilervehiculos.ui.auth.ui.alquiler.AlquilerActivity
 import com.example.alquilervehiculos.viewmodel.VehiculoViewModel
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class HomeActivity : AppCompatActivity() {
 
     private val homeViewModel: VehiculoViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView
     private lateinit var vehiculoAdapter: VehiculoAdapter
-    private var vehiculoSeleccionado: Vehiculo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("auth", MODE_PRIVATE)
 
         findViewById<Button>(R.id.btnLogout).setOnClickListener {
-            prefs.edit().remove("token").apply()
+            prefs.edit().remove("token").remove("usuarioId").apply()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
@@ -44,53 +38,23 @@ class HomeActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        vehiculoAdapter = VehiculoAdapter(emptyList()) { vehiculo ->
-            vehiculoSeleccionado = vehiculo
-            Toast.makeText(this, "Seleccionado: ${vehiculo.modelo}", Toast.LENGTH_SHORT).show()
-        }
-        recyclerView.adapter = vehiculoAdapter
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val tvError = findViewById<TextView>(R.id.tvError)
 
-        findViewById<Button>(R.id.btnAlquilarAuto).setOnClickListener {
-            vehiculoSeleccionado?.let { vehiculo ->
-                val usuarioId = prefs.getInt("usuarioId", 0)
-                val ahora = LocalDateTime.now()
-                val fin = ahora.plusDays(3)
-                val formatter = DateTimeFormatter.ISO_DATE_TIME
-
-                val alquiler = AlquilerRequest(
-                    usuarioId = usuarioId,
-                    vehiculoId = vehiculo.vehiculoId,
-                    empleadoId = 1,
-                    fechaInicio = formatter.format(ahora),
-                    fechaFin = formatter.format(fin),
-                    estado = "Pendiente",
-                    aceptoTerminos = true
-                )
-
-                homeViewModel.crearAlquiler(alquiler) { exito, mensaje ->
-                    if (exito) {
-                        Toast.makeText(this, "¡Alquiler registrado con éxito!", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this, "Error: $mensaje", Toast.LENGTH_LONG).show()
-                    }
-                }
-
-            } ?: Toast.makeText(this, "Seleccioná un vehículo primero", Toast.LENGTH_SHORT).show()
+        // ⛔ YA NO creamos alquileres acá. Solo redireccionamos al formulario
+        homeViewModel.vehiculos.observe(this) { lista ->
+            vehiculoAdapter = VehiculoAdapter(lista) { vehiculo ->
+                val intent = Intent(this, AlquilerActivity::class.java)
+                intent.putExtra("vehiculoId", vehiculo.vehiculoId)
+                intent.putExtra("modelo", vehiculo.modelo)
+                intent.putExtra("placa", vehiculo.placa)
+                startActivity(intent)
+            }
+            recyclerView.adapter = vehiculoAdapter
         }
 
         findViewById<Button>(R.id.btnContacto).setOnClickListener {
             Toast.makeText(this, "¡Pantalla de contacto pronto!", Toast.LENGTH_SHORT).show()
-        }
-
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        val tvError = findViewById<TextView>(R.id.tvError)
-
-        homeViewModel.vehiculos.observe(this) { lista ->
-            vehiculoAdapter = VehiculoAdapter(lista) { vehiculo ->
-                vehiculoSeleccionado = vehiculo
-                Toast.makeText(this, "Seleccionado: ${vehiculo.modelo}", Toast.LENGTH_SHORT).show()
-            }
-            recyclerView.adapter = vehiculoAdapter
         }
 
         homeViewModel.isLoading.observe(this) { loading ->
