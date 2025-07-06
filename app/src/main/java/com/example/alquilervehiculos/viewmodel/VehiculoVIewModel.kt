@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.alquilervehiculos.data.model.AlquilerRequest
 import com.example.alquilervehiculos.data.model.Vehiculo
+import com.example.alquilervehiculos.data.model.AlquilerRequest
+import com.example.alquilervehiculos.data.model.AlquilerResponse
 import com.example.alquilervehiculos.network.RestClient
+import com.example.alquilervehiculos.repository.AlquilerRepository
 import kotlinx.coroutines.launch
 
 class VehiculoViewModel : ViewModel() {
@@ -14,6 +16,11 @@ class VehiculoViewModel : ViewModel() {
     val vehiculos = MutableLiveData<List<Vehiculo>>()
     val isLoading = MutableLiveData<Boolean>()
     val error = MutableLiveData<String?>()
+
+    // 🆕 Estas 3 líneas son las que te faltaban:
+    private val repo = AlquilerRepository(RestClient.api)
+    val alquilerResultado = MutableLiveData<AlquilerResponse?>()
+    val alquilerError = MutableLiveData<String?>()
 
     fun cargarVehiculos() {
         isLoading.value = true
@@ -37,19 +44,16 @@ class VehiculoViewModel : ViewModel() {
         }
     }
 
-    fun crearAlquiler(request: AlquilerRequest, onResult: (Boolean, String?) -> Unit) {
+    fun crearAlquiler(dto: AlquilerRequest, callback: (Boolean, String) -> Unit) {
         viewModelScope.launch {
             try {
-                val response = RestClient.api.crearAlquiler(request)
-                if (response.isSuccessful) {
-                    onResult(true, null)
-                } else {
-                    onResult(false, "Error al crear alquiler: ${response.code()}")
-                }
+                val response = repo.crearAlquiler(dto)
+                alquilerResultado.postValue(response)
+                callback(true, "Alquiler creado (#${response.alquilerId})")
             } catch (e: Exception) {
-                onResult(false, "Excepción: ${e.localizedMessage}")
+                alquilerError.postValue(e.message)
+                callback(false, e.message ?: "Error desconocido")
             }
         }
     }
 }
-
