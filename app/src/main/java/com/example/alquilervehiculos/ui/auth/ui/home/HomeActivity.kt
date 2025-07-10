@@ -45,9 +45,7 @@ class HomeActivity : AppCompatActivity() {
         homeViewModel.vehiculos.observe(this) { lista ->
             vehiculoAdapter = VehiculoAdapter(lista) { vehiculo ->
                 val intent = Intent(this, AlquilerActivity::class.java)
-                intent.putExtra("vehiculoId", vehiculo.vehiculoId)
-                intent.putExtra("modelo", vehiculo.modelo)
-                intent.putExtra("placa", vehiculo.placa)
+                intent.putExtra("vehiculoSeleccionado", vehiculo)
                 startActivity(intent)
             }
             recyclerView.adapter = vehiculoAdapter

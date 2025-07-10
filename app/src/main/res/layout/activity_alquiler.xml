@@ -1,75 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <!-- 🧾 Vehículo seleccionado -->
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="8dp">
         <TextView
             android:id="@+id/tvVehiculoInfo"
-            android:text="Vehículo: Nissan Versa (ABC-123)"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-
-        <!-- 📅 Fecha inicio -->
+            android:text="Vehículo: FIAT Cronos 2024"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+        <!-- Fecha Inicio -->
         <EditText
             android:id="@+id/etFechaInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha de inicio (YYYY-MM-DD)"
-            android:inputType="date" />
+            android:hint="Fecha de inicio"
+            android:focusable="false"
+            android:clickable="true" />
 
-        <!-- 📅 Fecha fin -->
+        <!-- Fecha Fin -->
         <EditText
             android:id="@+id/etFechaFin"
-            android:hint="Fecha de fin (YYYY-MM-DD)"
-            android:inputType="date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Fecha de fin"
+            android:focusable="false"
+            android:clickable="true"
             android:layout_marginTop="8dp" />
 
-        <!-- 📄 Términos -->
+        <!-- Monto estimado -->
         <TextView
-            android:id="@+id/tvTerminosTexto"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvMontoTotal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="12dp"
-            android:text="Al confirmar el alquiler usted acepta que es responsable por el uso del vehículo, deberá devolverlo limpio y con combustible. La empresa no se hace responsable por objetos olvidados."
-            android:textSize="14sp" />
+            android:text="Total estimado: $0"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold" />
 
-        <!-- ✅ Acepto términos -->
+        <!-- Método de pago -->
+        <Spinner
+            android:id="@+id/spnMetodoPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+        <!-- Aceptar términos -->
         <CheckBox
             android:id="@+id/chkTerminos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Acepto los términos y condiciones" />
+            android:text="Acepto los términos y condiciones"
+            android:layout_marginTop="10dp" />
 
-        <!-- 🔘 Botón confirmar -->
+        <!-- Botón Confirmar -->
         <Button
             android:id="@+id/btnConfirmar"
-            android:text="Confirmar alquiler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Confirmar alquiler y pagar"
             android:layout_marginTop="16dp" />
 
-        <!-- 📤 Resultado -->
+        <!-- Loading -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
+        <!-- Resultado -->
         <TextView
             android:id="@+id/tvResultado"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text=""
-            android:textColor="#333333"
-            android:textSize="16sp" />
+            android:layout_marginTop="12dp"
+            android:textColor="@android:color/holo_green_dark" />
+
     </LinearLayout>
 </ScrollView>
 

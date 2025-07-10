@@ -5,6 +5,7 @@ import com.example.alquilervehiculos.data.model.LoginResponse
 import com.example.alquilervehiculos.data.model.RegistroRequest
 import com.example.alquilervehiculos.data.model.AlquilerRequest
 import com.example.alquilervehiculos.data.model.AlquilerResponse
+import com.example.alquilervehiculos.data.model.PagoRequest
 import com.example.alquilervehiculos.data.model.Vehiculo
 import retrofit2.Response
 import retrofit2.http.Body
@@ -26,6 +27,9 @@ interface ApiService {
 
     @POST("Alquiler")
     suspend fun crearAlquiler(@Body alquiler: AlquilerRequest): AlquilerResponse
+
+    @POST("Pago")
+    suspend fun registrarPago(@Body pago: PagoRequest): Response<Unit>
 
     @GET("alquiler/usuario/{id}/resumen")
     suspend fun obtenerResumenPorUsuario(@Path("id") usuarioId: Int): List<AlquilerResponse>

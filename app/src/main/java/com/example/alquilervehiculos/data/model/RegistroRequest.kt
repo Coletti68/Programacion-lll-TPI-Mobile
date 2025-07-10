@@ -11,5 +11,4 @@ data class RegistroRequest(
     val pais: String,
     val activo: Boolean = true
 
-
 )
